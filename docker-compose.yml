@@ -1,0 +1,28 @@
+version: "3"
+services:
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    restart: always
+    ports:
+    - "27017:27017"
+  php:
+    build: ./docker/php
+    ports:
+    - "9000:9000"
+    volumes:
+    - ./:/var/www/symfony:cached
+    - ./logs/symfony:/var/www/symfony/var/log:cached
+    links:
+    - mongo
+    extra_hosts:
+    - "docker.host:127.0.0.1"
+  nginx:
+    build: ./docker/nginx
+    ports:
+    - "8080:80"
+    links:
+    - php
+    volumes:
+    - ./logs/nginx:/var/log/nginx:cached
+    - ./:/var/www/symfony:cached
