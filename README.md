@@ -1,8 +1,10 @@
 ## SETUP
-docker-compose build
-docker-compose up
+* composer install
+* docker-compose build
+* docker-compose up
 
 ## TRAFFIC TO DATABASE
-docker-compose exec php bin/console app:get:traffic
+* docker-compose exec php bin/console app:get:traffic
 
-http://localhost:8080
+## GO TO
+* http://localhost:8080
